@@ -107,13 +107,14 @@ body {
 
 /* ======== SIDEBAR ======== */
 .bg-indigo-900 {
-  background: #1e1b4b;
+  background: #06023d;
 }
 
 .text-indigo-50 {
   color: #eef2ff;
 }
 
+/* round logo bg – if you use it */
 .sidebar-logo {
   width: 40px;
   height: 40px;
@@ -127,25 +128,39 @@ body {
   margin-bottom: 4px;
 }
 
+/* 🔧 LOGO + NAME GAP FIX */
+/* ===== FIX LOGO + NAME SPACING ===== */
 .login-logo {
   width: 60px;
   height: 60px;
-  margin-bottom: 6px;
-  border-radius: 50%;
-  object-fit: contain;
+  margin-bottom: 12px;      /* remove extra gap */
+  margin-top: 0px;
+  display: block;
 }
 
+.sidebar-title {
+  margin-top: 4px;         /* perfect small gap under logo */
+  font-size: 0.85rem;
+  color: #e0e7ff;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+  padding: 0;
+}
+
+
+/* sidebar buttons */
 .sidebar-btn {
   width: 100%;
   padding: 10px 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   background: transparent;
   border-radius: 8px;
   color: #eef2ff;
   transition: all 0.2s ease;
-  margin-bottom: 10px;  
+  margin-bottom: 10px;
 }
 
 .sidebar-btn:hover {
@@ -160,6 +175,7 @@ body {
 .sidebar-icon {
   font-size: 18px;
 }
+
 /* spacing / font utilities used by sign out */
 .m-3 {
   margin: 0.75rem;
@@ -177,11 +193,6 @@ body {
   font-weight: 500;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -193,7 +204,7 @@ body {
 
 /* Sign out button look */
 .bg-red-500\/90 {
-  background-color: rgba(37, 5, 124, 0.9);
+  background-color: rgba(5, 3, 86, 0.9);
   color: #ffffff;
   width: 80%;
   justify-content: center;
@@ -203,11 +214,7 @@ body {
   background-color: #dc2626;
 }
 
-/* optional: nicer title under logo */
-.sidebar-title {
-  font-size: 0.75rem;
-  color: #e0e7ff;
-}
+
 
 
 /* ======= STAT CARDS (Hostel style) ======= */
@@ -251,13 +258,13 @@ body {
 .stat-card-value {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #010d29;
 }
 
 .stat-card-sub {
   font-size: 0.75rem;
   margin-top: 4px;
-  color: #64748b;
+  color: #02132b;
 }
 
 .stat-card-bar {
@@ -309,19 +316,21 @@ body {
 
 /* ======= UPCOMING CLASSES TIME CHIP ======= */
 .time-chip {
-  padding: 4px 12px;
+  padding: 8px 12px;
   background: #eef2ff;
-  color: #4f46e5;
+  color: #310781;
   font-size: 0.75rem;
   border-radius: 9999px;
   font-weight: 500;
 }
 
+
 /* ======= SERVER TIME BOX ======= */
 .time-box {
-  background: #ffffff;
+  background: #fbfafa;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 0 22px rgba(99, 102, 241, 0.25);
+  
 }
 
 /* ======= DONUT CHART RESET ======= */
@@ -393,4 +402,89 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #71717a;
+}
+/* ==== Attendance donut extra utilities ==== */
+.w-40 {
+  width: 10rem;      /* 160px */
+}
+
+.h-40 {
+  height: 10rem;     /* 160px */
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+/* colors for donut + legend boxes */
+.border-emerald-500 {
+  border-color: #10b981;
+}
+
+.bg-emerald-500 {
+  background-color: #10b981;
+}
+
+.bg-slate-300 {
+  background-color: #cbd5e1;
+}
+/* ========== NEW UTILITIES FOR STUDENT PAGE ========== */
+
+/* container width + center */
+.max-w-5xl {
+  max-width: 64rem; /* ~1024px */
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* grid cols for md size (3 cards ekak ekama row ekakata yanawa) */
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* extra shadow levels */
+.shadow {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+.shadow-md {
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.16);
+}
+
+/* background colors for top info cards */
+.bg-indigo-500 {
+  background-color: #6366f1;
+}
+.bg-amber-400 {
+  background-color: #fbbf24;
+}
+
+/* text colors used in the form */
+.text-slate-500 {
+  color: #6b7280;
+}
+.text-slate-600 {
+  color: #4b5563;
+}
+.text-slate-800 {
+  color: #1f2937;
+}
+
+/* borders for inputs */
+.border {
+  border-width: 1px;
+}
+.border-slate-300 {
+  border-color: #cbd5e1;
+}
+
+/* textarea min height + resize-y */
+.min-h-\[80px\] {
+  min-height: 80px;
+}
+.resize-y {
+  resize: vertical;
 }
