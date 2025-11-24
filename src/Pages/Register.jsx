@@ -38,7 +38,7 @@ function Register() {
     // Later: send data to backend here
 
     setError("");
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import {
   FaUsers,
@@ -6,115 +6,234 @@ import {
   FaClipboardList,
   FaVideo,
   FaBookOpen,
+  FaChevronDown,
+  FaChevronRight,
+  FaSchool,
+  FaBook,
+  FaMoneyBill,
+  FaCog,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // 👈 IMPORT THIS
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
-  const navigate = useNavigate(); // 👈 INITIALIZE
+  const navigate = useNavigate();
+
+  const [openStudents, setOpenStudents] = useState(false);
+  const [openTeachers, setOpenTeachers] = useState(false);
+  const [openSubjects, setOpenSubjects] = useState(false);
+  const [openAccounts, setOpenAccounts] = useState(false);
+
+  // ---------- SIGN OUT HANDLER ----------
+  function handleSignOut() {
+    localStorage.removeItem("token");   // remove token if exists
+    navigate("/");                 // redirect to sign-in page
+  }
 
   return (
-    <aside className="w-64 bg-indigo-900 text-indigo-50 flex flex-col">
-      {/* TOP LOGO AREA */}
-      <div className="h-16 flex items-center justify-center border-b border-indigo-700">
-        <div className="flex flex-col items-center mt-4 mb-3">
-          <img src={logo} alt="logo" className="login-logo" />
-        </div>
+    <aside className="sidebar-wrapper">
+      {/* LOGO */}
+      <div className="sidebar-logo">
+        <img src={logo} alt="logo" />
       </div>
 
       {/* NAVIGATION */}
-      <nav className="flex-1 px-3 py-4 space-y-1 text-sm">
+      <nav className="sidebar-nav">
+
         {/* Dashboard */}
         <button
           className="sidebar-btn sidebar-btn-active"
-          onClick={() => navigate("/dashboard")}   // 👈 ROUTE
+          onClick={() => navigate("/dashboard")}
         >
           <FaBookOpen className="sidebar-icon" />
-          <span>Dashboard</span>
+          Dashboard
         </button>
 
         {/* Classes */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/classes")}
-        >
-          <FaClipboardList className="sidebar-icon" />
-          <span>Classes</span>
+        <button className="sidebar-btn" onClick={() => navigate("/classes")}>
+          <FaSchool className="sidebar-icon" />
+          Classes
         </button>
 
-        {/* Teachers */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/teachers")}
-        >
-          <FaUserGraduate className="sidebar-icon" />
-          <span>Teachers</span>
-        </button>
+        {/* STUDENTS */}
+        <div>
+          <button
+            className="sidebar-dropdown-toggle"
+            onClick={() => setOpenStudents(!openStudents)}
+          >
+            <span className="sidebar-dropdown-toggle-left">
+              <FaUsers className="sidebar-icon" />
+              Students
+            </span>
 
-        {/* Students */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/students")}   // 👈 STUDENT PAGE
-        >
-          <FaUsers className="sidebar-icon" />
-          <span>Students</span>
-        </button>
+            {openStudents ? (
+              <FaChevronDown className="sidebar-dropdown-chevron" />
+            ) : (
+              <FaChevronRight className="sidebar-dropdown-chevron" />
+            )}
+          </button>
 
-        {/* Assignments */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/assignments")}
-        >
-          <FaClipboardList className="sidebar-icon" />
-          <span>Assignments</span>
-        </button>
+          {openStudents && (
+            <div className="sidebar-submenu">
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/students/list")}
+              >
+                Student List
+              </div>
 
-        {/* Live Sessions */}
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/students/add")}
+              >
+                Add Student
+              </div>
+
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/students/view")}
+              >
+                Student View
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* TEACHERS */}
+        <div>
+          <button
+            className="sidebar-dropdown-toggle"
+            onClick={() => setOpenTeachers(!openTeachers)}
+          >
+            <span className="sidebar-dropdown-toggle-left">
+              <FaUserGraduate className="sidebar-icon" />
+              Teachers
+            </span>
+
+            {openTeachers ? (
+              <FaChevronDown className="sidebar-dropdown-chevron" />
+            ) : (
+              <FaChevronRight className="sidebar-dropdown-chevron" />
+            )}
+          </button>
+
+          {openTeachers && (
+            <div className="sidebar-submenu">
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/teachers/list")}
+              >
+                Teacher List
+              </div>
+
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/teachers/add")}
+              >
+                Add Teacher
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* SUBJECTS */}
+        <div>
+          <button
+            className="sidebar-dropdown-toggle"
+            onClick={() => setOpenSubjects(!openSubjects)}
+          >
+            <span className="sidebar-dropdown-toggle-left">
+              <FaBook className="sidebar-icon" />
+              Subjects
+            </span>
+
+            {openSubjects ? (
+              <FaChevronDown className="sidebar-dropdown-chevron" />
+            ) : (
+              <FaChevronRight className="sidebar-dropdown-chevron" />
+            )}
+          </button>
+
+          {openSubjects && (
+            <div className="sidebar-submenu">
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/subjects/list")}
+              >
+                Subject List
+              </div>
+
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/subjects/add")}
+              >
+                Add Subject
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ACCOUNTS */}
+        <div>
+          <button
+            className="sidebar-dropdown-toggle"
+            onClick={() => setOpenAccounts(!openAccounts)}
+          >
+            <span className="sidebar-dropdown-toggle-left">
+              <FaMoneyBill className="sidebar-icon" />
+              Accounts
+            </span>
+
+            {openAccounts ? (
+              <FaChevronDown className="sidebar-dropdown-chevron" />
+            ) : (
+              <FaChevronRight className="sidebar-dropdown-chevron" />
+            )}
+          </button>
+
+          {openAccounts && (
+            <div className="sidebar-submenu">
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/fees/collection")}
+              >
+                Fees Collection
+              </div>
+
+              <div
+                className="sidebar-subitem"
+                onClick={() => navigate("/fees/expenses")}
+              >
+                Expenses
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* LIVE SESSIONS */}
         <button
           className="sidebar-btn"
           onClick={() => navigate("/live-sessions")}
         >
           <FaVideo className="sidebar-icon" />
-          <span>Live Sessions</span>
+          Live Sessions
         </button>
 
-        {/* Attendance */}
+        {/* ATTENDANCE */}
         <button
           className="sidebar-btn"
           onClick={() => navigate("/attendance")}
         >
           <FaClipboardList className="sidebar-icon" />
-          <span>Attendance</span>
+          Attendance
         </button>
 
-        {/* Admin section label */}
-        <div className="pt-4 mt-4 border-t border-indigo-800 text-xs uppercase tracking-wide text-indigo-300">
-          Admin
-        </div>
-
-        {/* Settings */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/settings")}
-        >
-          <FaClipboardList className="sidebar-icon" />
-          <span>Settings</span>
-        </button>
-
-        {/* Users */}
-        <button
-          className="sidebar-btn"
-          onClick={() => navigate("/users")}
-        >
-          <FaUsers className="sidebar-icon" />
-          <span>Users</span>
-        </button>
+       
       </nav>
 
-      {/* Sign Out */}
-      <button className="m-3 mt-auto flex items-center gap-3 px-3 py-2 rounded-lg bg-red-500/90 text-sm font-medium hover:bg-red-600">
-        <span>Sign Out</span>
+      {/* SIGN OUT */}
+      <button className="sidebar-signout" onClick={handleSignOut}>
+        Sign Out
       </button>
     </aside>
   );
 }
-
