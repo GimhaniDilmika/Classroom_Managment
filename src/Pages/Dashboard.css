@@ -36,16 +36,30 @@ body {
 .shadow-sm { box-shadow: 0 3px 10px rgba(0,0,0,.08); }
 
 /* ======================= SIDEBAR ======================= */
+/* ======================= SIDEBAR ======================= */
 .sidebar-wrapper {
   width: 16rem;
-  height: 100vh;          /* IMPORTANT */
+  height: 100vh;            /* 👈 full screen height */
   background-color: #539ae5;
   border-right: 1px solid #6791e6;
   display: flex;
   flex-direction: column;
   color: #e4e9ef;
-  position: relative;      /* NEW */
+  position: fixed;          /* 👈 stays in same place when page scrolls */
+  top: 0;
+  left: 0;
+  overflow: hidden;         /* no extra scroll outside */
+  flex-shrink: 0;
 }
+
+/* only the menu area scrolls */
+.sidebar-nav {
+  padding: 1rem;
+  overflow-y: auto;         /* 👈 scroll inside */
+  flex: 1;
+}
+
+
 
 
 /* logo */
@@ -62,12 +76,7 @@ body {
   height: auto;
 }
 
-/* navigation */
-.sidebar-nav {
-  
-  padding: 1rem;
-  overflow-y: auto;
-}
+
 
 /* Section Titles */
 .sidebar-section-title {
@@ -185,7 +194,22 @@ body {
   border: none;
   transition: .15s;
 }
+.page-main {
+  margin-left: 16rem;       /* same as sidebar width */
+}
 
+/* layout around sidebar */
+.layout-wrapper {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+/* main content area */
+.page-main {
+  margin-left: 16rem;   /* 👈 same as sidebar width */
+  padding: 24px 32px;
+  flex: 1;
+}
 
 
 
@@ -360,3 +384,204 @@ body {
   font-family: system-ui, sans-serif;
   background: #f1f5f9;
 }
+/* ======================= STUDENT LIST PAGE ======================= */
+
+.studentlist-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* buttons top-right */
+.btn-solid-yellow,
+.btn-outline-yellow {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #fbbf24;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-solid-yellow {
+  background: #fbbf24;
+  color: #ffffff;
+}
+
+.btn-solid-yellow:hover {
+  background: #f59e0b;
+}
+
+.btn-outline-yellow {
+  background: #fff7e6;
+  color: #92400e;
+}
+
+.btn-outline-yellow:hover {
+  background: #ffedd5;
+}
+
+/* card spacing */
+.studentlist-card {
+  margin-top: 16px;
+}
+
+/* top controls row */
+.studentlist-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.studentlist-show {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studentlist-show select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+  background: #ffffff;
+}
+
+/* search box */
+.studentlist-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studentlist-search input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+
+/* table */
+.studentlist-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.studentlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.studentlist-table thead {
+  background: #f9fafb;
+}
+
+.studentlist-table th,
+.studentlist-table td {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.studentlist-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.studentlist-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.studentlist-table tbody tr:hover {
+  background: #f3f4f6;
+}
+
+.studentlist-empty {
+  text-align: center;
+  color: #6b7280;
+}
+
+/* actions */
+.studentlist-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn.edit {
+  background: #e0f2fe;
+}
+
+.action-btn.delete {
+  background: #fee2e2;
+}
+
+/* footer + pagination */
+.studentlist-footer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.studentlist-pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.page-btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.page-btn-active {
+  background: #fbbf24;
+  border-color: #fbbf24;
+  color: #ffffff;
+}
+
+.page-btn.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .studentlist-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .studentlist-header-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+

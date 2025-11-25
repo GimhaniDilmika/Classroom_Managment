@@ -14,9 +14,6 @@ import AttendanceOverview from "../Components/AttendanceOverview.jsx";
 import UpcomingClasses from "../Components/UpcomingClasses.jsx";
 import ServerTimeCard from "../Components/ServerTimeCard.jsx";
 
-
-
-
 export default function Dashboard() {
   const [time, setTime] = useState(new Date());
 
@@ -28,16 +25,18 @@ export default function Dashboard() {
   const formattedTime = time.toLocaleTimeString("en-GB", { hour12: false });
 
   return (
-    <div className="min-h-screen bg-slate-100 flex">
+    <div className="layout-wrapper">
+      
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
+      <main className="page-main">
+
         {/* Top bar */}
         <header className="h-16 flex items-center justify-between mb-4">
           <h1 className="text-xl font-semibold text-slate-800">
-             Classroom Management System
+            Classroom Management System
           </h1>
         </header>
 
@@ -84,9 +83,6 @@ export default function Dashboard() {
           <UpcomingClasses />
           <ServerTimeCard formattedTime={formattedTime} />
         </section>
-        
-
-        
 
       </main>
     </div>
