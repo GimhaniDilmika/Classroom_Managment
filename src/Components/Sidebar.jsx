@@ -74,12 +74,11 @@ export default function Sidebar() {
 
           {openStudents && (
             <div className="sidebar-submenu">
-              <div
-                className="sidebar-subitem"
-                onClick={() => navigate("/students/list")}
-              >
-                Student List
-              </div>
+             <div className="sidebar-subitem"
+              onClick={() => navigate("/students/list")}>
+              Student List
+             </div>
+
 
               <div
                 className="sidebar-subitem"
