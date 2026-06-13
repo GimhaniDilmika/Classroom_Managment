@@ -8,6 +8,12 @@ import ServerTimeCard from "../Components/ServerTimeCard.jsx";
 
 export default function Dashboard() {
   const [time, setTime] = useState(new Date());
+  const userEmail = localStorage.getItem("token")
+    ? atob(localStorage.getItem("token") || "").split(":")[0] || ""
+    : "";
+  const avatarInitials = userEmail
+    ? userEmail.slice(0, 2).toUpperCase()
+    : "AD";
 
   useEffect(() => {
     const id = setInterval(() => setTime(new Date()), 1000);
@@ -205,7 +211,7 @@ export default function Dashboard() {
               <FaBell />
               <span className="dash-notif-dot" />
             </div>
-            <div className="dash-avatar">AD</div>
+            <div className="dash-avatar">{avatarInitials}</div>
           </div>
         </header>
 
@@ -217,7 +223,7 @@ export default function Dashboard() {
             <p className="dash-hero-sub">Here's what's happening today across your institution.</p>
             <div className="dash-hero-badge">
               <span className="dash-hero-badge-dot" />
-              System Online · March 2026
+              System Online · {new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'})}
             </div>
           </div>
 

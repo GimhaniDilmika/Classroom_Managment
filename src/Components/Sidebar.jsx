@@ -5,6 +5,7 @@ import {
   FaBookOpen, FaChevronDown, FaChevronRight, FaSchool,
   FaBook, FaMoneyBill, FaSun, FaMoon, FaSignOutAlt,
   FaTachometerAlt,
+  FaCalendarAlt,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 

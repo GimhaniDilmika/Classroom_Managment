@@ -32,6 +32,7 @@ body {
   box-shadow: 0 16px 32px rgba(0,0,0,.12);
 }
 .stat-card-top { display: flex; align-items: center; gap: .75rem; }
+.stat-card-text { display: flex; flex-direction: column; gap: 1px; }
 .stat-card-icon {
   width: 44px; height: 44px;
   background: rgba(255,255,255,.85);
@@ -40,8 +41,8 @@ body {
   font-size: 22px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-.stat-card-label { font-size: .78rem; color: #475569; font-weight: 500; }
-.stat-card-value { font-size: 1.7rem; font-weight: 800; color: #0f172a; line-height: 1.1; }
+.stat-card-label { font-size: .72rem; color: #475569; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; display: block; }
+.stat-card-value { font-size: 1.65rem; font-weight: 800; color: #0f172a; line-height: 1.1; display: block; }
 .stat-card-sub { font-size: .72rem; margin-top: 6px; color: #64748b; }
 .stat-card-bar { margin-top: 10px; height: 4px; border-radius: 9999px; opacity: 0.6; }
 

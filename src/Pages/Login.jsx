@@ -19,6 +19,9 @@ function Login() {
     }
     setLoading(true);
     setTimeout(() => {
+      // Demo auth: accept any non-empty email/password
+      // Replace this block with a real API call when your backend is ready
+      localStorage.setItem("token", btoa(email + ":" + Date.now()));
       setLoading(false);
       navigate("/dashboard");
     }, 800);

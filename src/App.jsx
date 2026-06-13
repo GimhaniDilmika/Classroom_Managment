@@ -1,25 +1,49 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
 import AddStudent from "./Pages/AddStudent";
 import StudentListPage from "./Pages/StudentListPage";
+import Classes from "./Pages/Classes";
+import Teachers from "./Pages/Teachers";
+import Timetable from "./Pages/Timetable";
+import Subjects from "./Pages/Subjects";
 
-
-
+// ── Protected Route wrapper ──────────────────────────────────────────────────
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/" replace />;
+  return children;
+}
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard/>} />
-        
-         <Route path="/students/add" element={<AddStudent/>} />
-        <Route path="/students/list" element={<StudentListPage />} />
+        {/* Public */}
+        <Route path="/"          element={<Login />} />
+        <Route path="/register"  element={<Register />} />
 
+        {/* Protected */}
+        <Route path="/dashboard"     element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/students/add"  element={<ProtectedRoute><AddStudent /></ProtectedRoute>} />
+        <Route path="/students/list" element={<ProtectedRoute><StudentListPage /></ProtectedRoute>} />
+        <Route path="/classes"       element={<ProtectedRoute><Classes /></ProtectedRoute>} />
+        <Route path="/teachers/list" element={<ProtectedRoute><Teachers mode="list" /></ProtectedRoute>} />
+        <Route path="/teachers/add"  element={<ProtectedRoute><Teachers mode="add" /></ProtectedRoute>} />
+        <Route path="/timetable"     element={<ProtectedRoute><Timetable /></ProtectedRoute>} />
 
+        {/* Stub routes — show "Coming Soon" via reuse of Classes placeholder */}
+        <Route path="/subjects/list"    element={<ProtectedRoute><Subjects mode="list" /></ProtectedRoute>} />
+        <Route path="/subjects/add"     element={<ProtectedRoute><Subjects mode="add" /></ProtectedRoute>} />
+        <Route path="/attendance"       element={<ProtectedRoute><Classes stub="Attendance" /></ProtectedRoute>} />
+        <Route path="/live-sessions"    element={<ProtectedRoute><Classes stub="Live Sessions" /></ProtectedRoute>} />
+        <Route path="/fees/collection"  element={<ProtectedRoute><Classes stub="Fees Collection" /></ProtectedRoute>} />
+        <Route path="/fees/expenses"    element={<ProtectedRoute><Classes stub="Expenses" /></ProtectedRoute>} />
+        <Route path="/students/view"    element={<ProtectedRoute><Classes stub="Student View" /></ProtectedRoute>} />
+
+        {/* Catch-all */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );
