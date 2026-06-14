@@ -7,10 +7,12 @@ import {
   FaTachometerAlt,
   FaCalendarAlt,
 } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const location = useLocation();
 
   const [openStudents, setOpenStudents] = useState(false);
@@ -26,7 +28,7 @@ export default function Sidebar() {
 
   function handleSignOut() {
     localStorage.removeItem("token");
-    navigate("/");
+    logout().then(() => navigate("/"));
   }
 
   const isActive = (path) => location.pathname === path;
