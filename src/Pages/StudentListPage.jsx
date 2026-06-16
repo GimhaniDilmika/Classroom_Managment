@@ -1,6 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
+
+import { db } from "../firebase";
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 
 // Sample data
 const SAMPLE_STUDENTS = [
@@ -42,6 +45,35 @@ export default function StudentListPage() {
   const [pageSize, setPageSize] = useState(5);
   const [page, setPage] = useState(1);
   const [students, setStudents] = useState(SAMPLE_STUDENTS);
+  const [loadingStudents, setLoadingStudents] = useState(true);
+
+  useEffect(() => {
+    const q = query(collection(db, "students"), orderBy("createdAt", "desc"));
+    const unsub = onSnapshot(q, (snap) => {
+      if (!snap.empty) {
+        const data = snap.docs.map(d => ({
+          id: d.id,
+          admNo: d.data().admNo || d.data().studentId || d.id.slice(0,6).toUpperCase(),
+          name: d.data().name || `${d.data().firstName||""} ${d.data().lastName||""}`.trim(),
+          gender: d.data().gender || "",
+          class: d.data().className || d.data().class || "",
+          section: d.data().section || "",
+          mobile: d.data().mobile || "",
+          joining: d.data().joiningDate || d.data().joining || "",
+          ...d.data()
+        }));
+        setStudents(data);
+      }
+      setLoadingStudents(false);
+    }, () => setLoadingStudents(false));
+    return unsub;
+  }, []);
+
+  async function handleDelete(id) {
+    if (!window.confirm("Delete this student?")) return;
+    try { await deleteDoc(doc(db, "students", id)); }
+    catch { /* local fallback */ setStudents(s => s.filter(x => x.id !== id)); }
+  }
 
   const filtered = useMemo(() => {
     return students.filter(s => {

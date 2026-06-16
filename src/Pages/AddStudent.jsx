@@ -1,6 +1,10 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
 import "./AddStudent.css";
+
+import { db } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function AddStudent() {
   const [form, setForm] = useState({
@@ -36,11 +40,27 @@ export default function AddStudent() {
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
-  function handleSubmit(e) {
+  const navigate = useNavigate();
+  const [saving, setSaving] = useState(false);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    console.log("Form:", form, "Image:", studentImage);
+    setSaving(true);
+    try {
+      const initials2 = `${form.firstName?.[0] || ""}${form.lastName?.[0] || ""}`.toUpperCase() || "?";
+      await addDoc(collection(db, "students"), {
+        ...form,
+        name: `${form.firstName} ${form.lastName}`.trim(),
+        admNo: form.admissionNumber || form.studentId,
+        initials: initials2,
+        createdAt: serverTimestamp(),
+      });
+      setSubmitted(true);
+      setTimeout(() => { setSubmitted(false); navigate("/students/list"); }, 1500);
+    } catch (err) {
+      alert("Error saving student: " + err.message);
+    }
+    setSaving(false);
   }
 
   const initials = `${form.firstName?.[0] || ""}${form.lastName?.[0] || ""}`.toUpperCase() || "?";
@@ -308,9 +328,9 @@ export default function AddStudent() {
                   <label>Gender</label>
                   <select name="gender" value={form.gender} onChange={handleChange}>
                     <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div className="form-group">
@@ -391,7 +411,9 @@ export default function AddStudent() {
               </div>
 
               <div className="form-submit-wrapper">
-                <button type="submit" className="form-submit-btn">Submit Student</button>
+                <button type="submit" className="form-submit-btn" disabled={saving}>
+                  {saving ? "Saving..." : "Submit Student"}
+                </button>
                 {submitted && (
                   <div className="success-toast">✓ Student added successfully!</div>
                 )}
