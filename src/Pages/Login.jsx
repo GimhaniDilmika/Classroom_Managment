@@ -16,26 +16,26 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) { setError("Email සහ Password ඇතුළු කරන්න."); return; }
+    if (!email || !password) { setError("Please enter your email and password."); return; }
     try {
       setError(""); setLoading(true);
       await login(email, password);
       navigate("/dashboard");
     } catch (err) {
       setError(
-        err.code === "auth/invalid-credential" ? "Email හෝ Password වැරදියි." :
-        err.code === "auth/too-many-requests"  ? "ගොඩක් tries. පසුව try කරන්න." :
+        err.code === "auth/invalid-credential" ? "Email or password is incorrect." :
+        err.code === "auth/too-many-requests"  ? "Too many attempts. Please try again later." :
         "Login error: " + err.message
       );
     } finally { setLoading(false); }
   };
 
   const handleForgot = async () => {
-    if (!email) { setError("Password reset සඳහා Email ඇතුළු කරන්න."); return; }
+    if (!email) { setError("Please enter your email address to reset your password."); return; }
     try {
       await resetPassword(email);
       setResetSent(true); setError("");
-    } catch { setError("Reset email යවන්නට බැරි වුණා."); }
+    } catch { setError("Unable to send reset email. Please try again."); }
   };
 
   return (
@@ -85,11 +85,11 @@ function Login() {
               <img src={logo} alt="logo" className="login-logo" />
             </div>
             <h1>Welcome Back</h1>
-            <p>OL Classroom Management System</p>
+            <p>Smart Classroom Intelligence System</p>
           </div>
 
           {error    && <div className="login-alert login-error">⚠️ {error}</div>}
-          {resetSent && <div className="login-alert login-success">✅ Reset email යවා ගත්තා! Inbox check කරන්න.</div>}
+          {resetSent && <div className="login-alert login-success">✅ Reset email sent. Please check your inbox.</div>}
 
           <form onSubmit={handleSubmit}>
             <div className="field-group">
@@ -124,7 +124,7 @@ function Login() {
           </p>
 
           <div className="role-hint">
-            🔐 Admin account එකක් හදන්නට — Register කරලා Firestore හි role "admin" කරන්න
+            🔐 To create an admin account, register first and set the user role to "admin" in Firestore.
           </div>
         </div>
       </div>

@@ -17,17 +17,17 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.password || !form.confirmPassword) { setError("සියලු fields පුරවන්න."); return; }
-    if (form.password !== form.confirmPassword) { setError("Passwords match වෙන්නේ නෑ."); return; }
-    if (form.password.length < 6) { setError("Password අවම 6 characters ඕනේ."); return; }
+    if (!form.name || !form.email || !form.password || !form.confirmPassword) { setError("Please fill in all fields."); return; }
+    if (form.password !== form.confirmPassword) { setError("Passwords do not match."); return; }
+    if (form.password.length < 6) { setError("Password must contain at least 6 characters."); return; }
     try {
       setError(""); setLoading(true);
       await register(form.name, form.email, form.password);
       navigate("/dashboard");
     } catch (err) {
       setError(
-        err.code === "auth/email-already-in-use" ? "ඒ email already registered." :
-        err.code === "auth/weak-password"         ? "Password ශක්තිමත් කරන්න." :
+        err.code === "auth/email-already-in-use" ? "This email is already registered." :
+        err.code === "auth/weak-password"         ? "Please choose a stronger password." :
         "Error: " + err.message
       );
     } finally { setLoading(false); }
@@ -69,7 +69,7 @@ function Register() {
           <div className="reg-header">
             <div className="reg-logo-wrap"><img src={logo} alt="logo" className="reg-logo" /></div>
             <h1>Create Account</h1>
-            <p>OL Classroom Management System</p>
+            <p>Smart Classroom Intelligence System</p>
           </div>
 
           {error && <div className="reg-error">⚠️ {error}</div>}
@@ -77,7 +77,7 @@ function Register() {
           <form onSubmit={handleSubmit}>
             <div className="rfield">
               <label>Full Name</label>
-              <div className="rinput"><span>👤</span><input type="text" name="name" placeholder="ඔයාගේ නම" value={form.name} onChange={handleChange} /></div>
+              <div className="rinput"><span>👤</span><input type="text" name="name" placeholder="Your name" value={form.name} onChange={handleChange} /></div>
             </div>
             <div className="rfield">
               <label>Email Address</label>
@@ -87,7 +87,7 @@ function Register() {
               <label>Password</label>
               <div className="rinput">
                 <span>🔒</span>
-                <input type={showPassword ? "text" : "password"} name="password" placeholder="අවම 6 characters" value={form.password} onChange={handleChange} />
+                <input type={showPassword ? "text" : "password"} name="password" placeholder="At least 6 characters" value={form.password} onChange={handleChange} />
                 <span className="eye2" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "🙈" : "👁️"}</span>
               </div>
             </div>
@@ -95,7 +95,7 @@ function Register() {
               <label>Confirm Password</label>
               <div className="rinput">
                 <span>🔒</span>
-                <input type={showConfirm ? "text" : "password"} name="confirmPassword" placeholder="Password repeat කරන්න" value={form.confirmPassword} onChange={handleChange} />
+                <input type={showConfirm ? "text" : "password"} name="confirmPassword" placeholder="Repeat password" value={form.confirmPassword} onChange={handleChange} />
                 <span className="eye2" onClick={() => setShowConfirm(!showConfirm)}>{showConfirm ? "🙈" : "👁️"}</span>
               </div>
             </div>
@@ -105,7 +105,7 @@ function Register() {
           </form>
 
           <p className="reg-signin">Already have an account? <span onClick={() => navigate("/")}>Sign In</span></p>
-          <div className="reg-note">📌 Register වීමෙන් Teacher account එකක් හදෙනවා. Admin access සඳහා Firestore හි role "admin" කරන්න.</div>
+          <div className="reg-note">📌 Registration creates a teacher account by default. For admin access, set the user role to "admin" in Firestore.</div>
         </div>
       </div>
     </>
