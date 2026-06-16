@@ -91,11 +91,6 @@ export default function StudentListPage() {
   const currentPage = Math.min(page, totalPages);
   const paginated = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  function handleDelete(id) {
-    if (window.confirm("Delete this student?")) {
-      setStudents(prev => prev.filter(s => s.id !== id));
-    }
-  }
 
   return (
     <>

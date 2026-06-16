@@ -6,7 +6,7 @@ import {
   FaBook, FaMoneyBill, FaSun, FaMoon, FaSignOutAlt,
   FaTachometerAlt,
   FaCalendarAlt,
-  FaCalendarCheck,
+  FaCalendarCheck, FaBars, FaTimes,
 } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -21,6 +21,7 @@ export default function Sidebar() {
   const [openSubjects, setOpenSubjects] = useState(false);
   const [openAccounts, setOpenAccounts] = useState(false);
   const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
@@ -33,6 +34,20 @@ export default function Sidebar() {
   }
 
   const isActive = (path) => location.pathname === path;
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  function goTo(path) {
+    navigate(path);
+    setMobileOpen(false);
+  }
 
   return (
     <>
@@ -239,9 +254,309 @@ export default function Sidebar() {
           box-shadow: 0 4px 12px rgba(239,68,68,0.3);
         }
         .sb-signout:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(239,68,68,0.4); }
+
+
+        .sb-mobile-toggle,
+        .sb-backdrop { display: none; }
+
+        @media (max-width: 900px) {
+          html, body, #root { width: 100%; max-width: 100%; overflow-x: hidden; }
+
+          .sb-mobile-toggle {
+            position: fixed;
+            top: 0.75rem;
+            left: 0.85rem;
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            z-index: 320;
+            box-shadow: 0 10px 22px rgba(245, 158, 11, 0.35);
+            cursor: pointer;
+          }
+
+          .sb-backdrop {
+            position: fixed;
+            inset: 0;
+            display: block;
+            background: rgba(15, 23, 42, 0.48);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 280;
+            transition: opacity 0.22s ease;
+          }
+          .sb-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .sb-wrap {
+            width: min(82vw, 19rem);
+            max-width: 19rem;
+            transform: translateX(-105%);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            z-index: 300;
+            box-shadow: none;
+          }
+          .sb-wrap.sb-open {
+            transform: translateX(0);
+            box-shadow: 18px 0 38px rgba(15, 23, 42, 0.28);
+          }
+
+          .dash-page,
+          .cls-page,
+          .tc-page,
+          .sl-page,
+          .add-page,
+          .sv-page,
+          .sub-page,
+          .tt-page,
+          .atn-main,
+          .live-main,
+          .fee-main,
+          .exp-main,
+          .pr-page,
+          .st-page,
+          .cp-page {
+            margin-left: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+          }
+
+          .dash-topbar,
+          .cls-topbar,
+          .tc-topbar,
+          .sv-topbar,
+          .sub-topbar,
+          .tt-topbar,
+          .atn-topbar,
+          .live-topbar,
+          .fee-topbar,
+          .exp-topbar,
+          .pr-topbar,
+          .st-topbar,
+          .cp-topbar {
+            padding-left: 4.5rem !important;
+            padding-right: 1rem !important;
+            height: 4rem !important;
+          }
+
+          .dash-content,
+          .cls-content,
+          .tc-content,
+          .sl-page,
+          .add-page,
+          .sv-content,
+          .sub-content,
+          .tt-content,
+          .atn-content,
+          .live-content,
+          .fee-content,
+          .exp-content,
+          .pr-content,
+          .st-content,
+          .cp-content {
+            padding: 1rem !important;
+            box-sizing: border-box !important;
+          }
+
+          .dash-topbar-title,
+          .cls-topbar-title,
+          .tc-topbar-title,
+          .sv-topbar-title,
+          .sub-topbar-title,
+          .tt-topbar-title,
+          .atn-topbar-title,
+          .live-topbar-title,
+          .fee-topbar-title,
+          .exp-topbar-title,
+          .pr-topbar-title,
+          .st-topbar-title,
+          .cp-topbar-title {
+            font-size: 1rem !important;
+            line-height: 1.15 !important;
+          }
+
+          .dash-search { display: none !important; }
+          .dash-topbar-right { gap: 0.45rem !important; }
+          .profile-panel, .notif-panel { right: 0 !important; left: auto !important; width: min(92vw, 330px) !important; }
+
+          .dash-hero,
+          .atn-hero,
+          .live-hero,
+          .fee-hero,
+          .exp-hero {
+            border-radius: 1rem !important;
+            padding: 1.2rem !important;
+          }
+          .dash-hero-title,
+          .atn-hero h1,
+          .live-hero h1,
+          .fee-hero h1,
+          .exp-hero h1 {
+            font-size: 1.45rem !important;
+            line-height: 1.15 !important;
+          }
+
+          .stats-grid,
+          .live-stats,
+          .fee-stats,
+          .exp-stats,
+          .atn-stats {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 0.8rem !important;
+          }
+          .lower-grid,
+          .live-form-grid,
+          .fee-form-grid,
+          .exp-form-grid,
+          .atn-hero,
+          .fee-hero,
+          .exp-hero,
+          .live-toolbar,
+          .fee-toolbar,
+          .exp-toolbar,
+          .atn-toolbar {
+            grid-template-columns: 1fr !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+
+          .cls-grid,
+          .tc-grid,
+          .sub-grid,
+          .sv-grid,
+          .live-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .cls-header-row > div:last-child,
+          .tc-header-row > div:last-child,
+          .sub-header-row > div:last-child,
+          .sv-filter-bar,
+          .sl-filter-bar,
+          .sl-filter-left,
+          .sl-filter-right,
+          .add-page-header,
+          .form-submit-wrapper {
+            width: 100% !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+
+          .cls-search,
+          .tc-search,
+          .sub-search,
+          .sv-search,
+          .sl-search-wrap,
+          .atn-search,
+          .live-search,
+          .fee-search,
+          .exp-search {
+            width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+          }
+          .cls-search input,
+          .tc-search input,
+          .sub-search input,
+          .sv-search input,
+          .sl-search,
+          .atn-search input,
+          .live-search input,
+          .fee-search input,
+          .exp-search input {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+
+          .cls-add-btn,
+          .tc-add-btn,
+          .sub-add-btn,
+          .sv-add-btn,
+          .sl-add-btn,
+          .atn-export,
+          .atn-save,
+          .live-primary,
+          .fee-primary,
+          .exp-primary,
+          .form-submit-btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+
+          .cls-form-grid,
+          .tc-form-grid,
+          .sub-form-grid,
+          .form-grid,
+          .sv-detail-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .sl-card,
+          .add-card,
+          .tc-card,
+          .cls-card,
+          .sub-card,
+          .sv-card,
+          .atn-card,
+          .live-card,
+          .fee-card,
+          .exp-card,
+          .pr-card,
+          .st-card,
+          .cp-card {
+            border-radius: 1rem !important;
+          }
+
+          .sl-table-wrap,
+          .atn-table-wrap,
+          .fee-table-wrap,
+          .exp-table-wrap,
+          .tt-table-wrap {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          .sl-footer,
+          .atn-footer,
+          .fee-form-actions,
+          .exp-form-actions {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .sl-pagination { flex-wrap: wrap !important; justify-content: center !important; }
+        }
+
+        @media (max-width: 520px) {
+          .stats-grid,
+          .live-stats,
+          .fee-stats,
+          .exp-stats,
+          .atn-stats {
+            grid-template-columns: 1fr !important;
+          }
+          .dash-topbar-title { max-width: 180px !important; }
+          .dash-hero-sub { font-size: 0.82rem !important; }
+          .stat-card { min-height: auto !important; }
+          .sb-logo { justify-content: flex-start; padding-left: 1.25rem; }
+        }
       `}</style>
 
-      <aside className="sb-wrap">
+      <button type="button" className="sb-mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation">
+        {mobileOpen ? <FaTimes /> : <FaBars />}
+      </button>
+      <div className={`sb-backdrop ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(false)} />
+
+      <aside className={`sb-wrap ${mobileOpen ? "sb-open" : ""}`}>
         {/* LOGO */}
         <div className="sb-logo">
           <img src={logo} alt="logo" />
@@ -252,11 +567,11 @@ export default function Sidebar() {
         <nav className="sb-nav">
           <div className="sb-section-label">Main</div>
 
-          <button className={`sb-btn ${isActive("/dashboard") ? "sb-btn-active" : ""}`} onClick={() => navigate("/dashboard")}>
+          <button className={`sb-btn ${isActive("/dashboard") ? "sb-btn-active" : ""}`} onClick={() => goTo("/dashboard")}>
             <FaTachometerAlt className="sb-icon" /> Dashboard
           </button>
 
-          <button className={`sb-btn ${isActive("/classes") ? "sb-btn-active" : ""}`} onClick={() => navigate("/classes")}>
+          <button className={`sb-btn ${isActive("/classes") ? "sb-btn-active" : ""}`} onClick={() => goTo("/classes")}>
             <FaSchool className="sb-icon" /> Classes
           </button>
 
@@ -270,9 +585,9 @@ export default function Sidebar() {
             </button>
             {openStudents && (
               <div className="sb-submenu">
-                <div className="sb-subitem" onClick={() => navigate("/students/list")}>Student List</div>
-                <div className="sb-subitem" onClick={() => navigate("/students/add")}>Add Student</div>
-                <div className="sb-subitem" onClick={() => navigate("/students/view")}>Student View</div>
+                <div className="sb-subitem" onClick={() => goTo("/students/list")}>Student List</div>
+                <div className="sb-subitem" onClick={() => goTo("/students/add")}>Add Student</div>
+                <div className="sb-subitem" onClick={() => goTo("/students/view")}>Student View</div>
               </div>
             )}
           </div>
@@ -285,8 +600,8 @@ export default function Sidebar() {
             </button>
             {openTeachers && (
               <div className="sb-submenu">
-                <div className="sb-subitem" onClick={() => navigate("/teachers/list")}>Teacher List</div>
-                <div className="sb-subitem" onClick={() => navigate("/teachers/add")}>Add Teacher</div>
+                <div className="sb-subitem" onClick={() => goTo("/teachers/list")}>Teacher List</div>
+                <div className="sb-subitem" onClick={() => goTo("/teachers/add")}>Add Teacher</div>
               </div>
             )}
           </div>
@@ -301,21 +616,21 @@ export default function Sidebar() {
             </button>
             {openSubjects && (
               <div className="sb-submenu">
-                <div className="sb-subitem" onClick={() => navigate("/subjects/list")}>Subject List</div>
-                <div className="sb-subitem" onClick={() => navigate("/subjects/add")}>Add Subject</div>
+                <div className="sb-subitem" onClick={() => goTo("/subjects/list")}>Subject List</div>
+                <div className="sb-subitem" onClick={() => goTo("/subjects/add")}>Add Subject</div>
               </div>
             )}
           </div>
 
-          <button className={`sb-btn ${isActive("/attendance") ? "sb-btn-active" : ""}`} onClick={() => navigate("/attendance")}>
+          <button className={`sb-btn ${isActive("/attendance") ? "sb-btn-active" : ""}`} onClick={() => goTo("/attendance")}>
             <FaClipboardList className="sb-icon" /> Attendance
           </button>
 
-          <button className={`sb-btn ${isActive("/timetable") ? "sb-btn-active" : ""}`} onClick={() => navigate("/timetable")}>
+          <button className={`sb-btn ${isActive("/timetable") ? "sb-btn-active" : ""}`} onClick={() => goTo("/timetable")}>
             <FaCalendarCheck className="sb-icon" /> Timetable
           </button>
 
-          <button className={`sb-btn ${isActive("/live-sessions") ? "sb-btn-active" : ""}`} onClick={() => navigate("/live-sessions")}>
+          <button className={`sb-btn ${isActive("/live-sessions") ? "sb-btn-active" : ""}`} onClick={() => goTo("/live-sessions")}>
             <FaVideo className="sb-icon" /> Live Sessions
           </button>
 
@@ -329,8 +644,8 @@ export default function Sidebar() {
             </button>
             {openAccounts && (
               <div className="sb-submenu">
-                <div className="sb-subitem" onClick={() => navigate("/fees/collection")}>Fees Collection</div>
-                <div className="sb-subitem" onClick={() => navigate("/fees/expenses")}>Expenses</div>
+                <div className="sb-subitem" onClick={() => goTo("/fees/collection")}>Fees Collection</div>
+                <div className="sb-subitem" onClick={() => goTo("/fees/expenses")}>Expenses</div>
               </div>
             )}
           </div>
