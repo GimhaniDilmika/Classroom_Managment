@@ -27,7 +27,7 @@ export default function Classes({ stub }) {
             <div className="cls-content" style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:"60vh" }}>
               <div style={{ fontSize:"4rem", marginBottom:"1rem" }}>🚧</div>
               <h2 style={{ fontFamily:"Syne,sans-serif", fontWeight:800, fontSize:"1.6rem", color:"#302b63", marginBottom:"8px" }}>{stub}</h2>
-              <p style={{ color:"#94a3b8", fontSize:"0.9rem" }}>This section is coming soon. Check back later!</p>
+              <p style={{ color:"#94a3b8", fontSize:"0.9rem" }}>This module is now available from the main navigation.</p>
             </div>
           </div>
         </div>
