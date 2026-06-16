@@ -9,6 +9,14 @@ import Classes from "./Pages/Classes";
 import Teachers from "./Pages/Teachers";
 import Timetable from "./Pages/Timetable";
 import Subjects from "./Pages/Subjects";
+import Attendance from "./Pages/Attendance";
+import LiveSessions from "./Pages/LiveSessions";
+import FeesCollection from "./Pages/FeesCollection";
+import Expenses from "./Pages/Expenses";
+import MyProfile from "./Pages/MyProfile";
+import Settings from "./Pages/Settings";
+import ChangePassword from "./Pages/ChangePassword";
+import StudentView from "./Pages/StudentView";
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { currentUser, userRole } = useAuth();
@@ -42,12 +50,15 @@ function App() {
         <Route path="/subjects/list" element={<ProtectedRoute><Subjects mode="list" /></ProtectedRoute>} />
         <Route path="/subjects/add"  element={<ProtectedRoute><Subjects mode="add" /></ProtectedRoute>} />
 
-        {/* Stub routes */}
-        <Route path="/attendance"      element={<ProtectedRoute><Classes stub="Attendance" /></ProtectedRoute>} />
-        <Route path="/live-sessions"   element={<ProtectedRoute><Classes stub="Live Sessions" /></ProtectedRoute>} />
-        <Route path="/fees/collection" element={<ProtectedRoute><Classes stub="Fees Collection" /></ProtectedRoute>} />
-        <Route path="/fees/expenses"   element={<ProtectedRoute><Classes stub="Expenses" /></ProtectedRoute>} />
-        <Route path="/students/view"   element={<ProtectedRoute><Classes stub="Student View" /></ProtectedRoute>} />
+        {/* Completed modules */}
+        <Route path="/attendance"      element={<ProtectedRoute><Attendance /></ProtectedRoute>} />
+        <Route path="/live-sessions"   element={<ProtectedRoute><LiveSessions /></ProtectedRoute>} />
+        <Route path="/fees/collection" element={<ProtectedRoute><FeesCollection /></ProtectedRoute>} />
+        <Route path="/fees/expenses"   element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
+        <Route path="/students/view"   element={<ProtectedRoute><StudentView /></ProtectedRoute>} />
+        <Route path="/profile"          element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
+        <Route path="/settings"         element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route path="/change-password"  element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
 
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>

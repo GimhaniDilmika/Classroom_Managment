@@ -7,6 +7,7 @@ import StatCard from "../Components/StatCard.jsx";
 import AttendanceOverview from "../Components/AttendanceOverview.jsx";
 import UpcomingClasses from "../Components/UpcomingClasses.jsx";
 import ServerTimeCard from "../Components/ServerTimeCard.jsx";
+import SmartInsights from "../Components/SmartInsights.jsx";
 import "./Dashboard.css";
 
 const NOTIFICATIONS = [
@@ -238,7 +239,7 @@ export default function Dashboard() {
 
         {/* ── TOP BAR ── */}
         <header className="dash-topbar">
-          <span className="dash-topbar-title">ClassEase</span>
+          <span className="dash-topbar-title">ClassEase Intelligence</span>
 
           <div className="dash-topbar-right">
             {/* Search */}
@@ -296,9 +297,9 @@ export default function Dashboard() {
                   </div>
                   <hr className="profile-divider" />
                   <div className="profile-menu">
-                    <button className="profile-menu-item"><FaUserCircle style={{ color:"#f59e0b" }} /> My Profile</button>
-                    <button className="profile-menu-item"><FaCog style={{ color:"#8b5cf6" }} /> Settings</button>
-                    <button className="profile-menu-item"><FaCheckCircle style={{ color:"#10b981" }} /> Change Password</button>
+                    <button className="profile-menu-item" onClick={() => { setShowProfile(false); navigate("/profile"); }}><FaUserCircle style={{ color:"#f59e0b" }} /> My Profile</button>
+                    <button className="profile-menu-item" onClick={() => { setShowProfile(false); navigate("/settings"); }}><FaCog style={{ color:"#8b5cf6" }} /> Settings</button>
+                    <button className="profile-menu-item" onClick={() => { setShowProfile(false); navigate("/change-password"); }}><FaCheckCircle style={{ color:"#10b981" }} /> Change Password</button>
                     <hr className="profile-divider" />
                     <button className="profile-menu-item danger" onClick={handleSignOut}><FaSignOutAlt /> Sign Out</button>
                   </div>
@@ -312,25 +313,28 @@ export default function Dashboard() {
           {/* ── HERO ── */}
           <div className="dash-hero">
             <p className="dash-welcome">{getGreeting()} 👋</p>
-            <h1 className="dash-hero-title">OL Classroom Management System</h1>
-            <p className="dash-hero-sub">Here's what's happening today across your institution.</p>
+            <h1 className="dash-hero-title">Smart Classroom Intelligence System</h1>
+            <p className="dash-hero-sub">Track students, attendance, timetable flow, and support actions from one intelligent dashboard.</p>
             <div className="dash-hero-badge">
               <span className="dash-hero-badge-dot" />
-              System Online · {new Date().toLocaleDateString("en-GB", { month:"long", year:"numeric" })}
+              Intelligence Dashboard Online · {new Date().toLocaleDateString("en-GB", { month:"long", year:"numeric" })}
             </div>
           </div>
 
           {/* ── STATS ── */}
           <p className="dash-section-label">Overview</p>
           <div className="stats-grid">
-            <StatCard label="Students"      value="184" sub="Active today"          icon={FaUserGraduate}  variant="stat-card-students" />
-            <StatCard label="Classes"       value="12"  sub="Ongoing"               icon={FaBookOpen}      variant="stat-card-classes" />
-            <StatCard label="Assignments"   value="23"  sub="Pending grading"       icon={FaClipboardList} variant="stat-card-assignments" />
-            <StatCard label="Live Sessions" value="3"   sub="In progress / upcoming" icon={FaVideo}        variant="stat-card-live" />
+            <StatCard label="Students" value="184" sub="Student profiles monitored" icon={FaUserGraduate} variant="stat-card-students" />
+            <StatCard label="Classes" value="12" sub="Active class groups" icon={FaBookOpen} variant="stat-card-classes" />
+            <StatCard label="Support Actions" value="18" sub="Teacher follow-ups this week" icon={FaClipboardList} variant="stat-card-assignments" />
+            <StatCard label="Timetable Alerts" value="2" sub="Conflicts to review" icon={FaVideo} variant="stat-card-live" />
           </div>
 
+          <p className="dash-section-label">Intelligence</p>
+          <SmartInsights />
+
           {/* ── LOWER ── */}
-          <p className="dash-section-label">Details</p>
+          <p className="dash-section-label">Classroom Operations</p>
           <div className="lower-grid">
             <AttendanceOverview />
             <UpcomingClasses />

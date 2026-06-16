@@ -6,6 +6,7 @@ import {
   FaBook, FaMoneyBill, FaSun, FaMoon, FaSignOutAlt,
   FaTachometerAlt,
   FaCalendarAlt,
+  FaCalendarCheck,
 } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -86,6 +87,7 @@ export default function Sidebar() {
         }
         .sb-logo img { width: 3rem; height: auto; filter: drop-shadow(0 0 8px rgba(245,158,11,0.5)); }
         .sb-logo-text { color: #f59e0b; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; }
+        .sb-logo-sub { color: rgba(255,255,255,0.45); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-top: -3px; }
 
         .sb-nav {
           flex: 1;
@@ -243,7 +245,7 @@ export default function Sidebar() {
         {/* LOGO */}
         <div className="sb-logo">
           <img src={logo} alt="logo" />
-          <span className="sb-logo-text">ClassEase</span>
+          <span style={{ display:"flex", flexDirection:"column", lineHeight:1.1 }}><span className="sb-logo-text">ClassEase</span><span className="sb-logo-sub">Intelligence</span></span>
         </div>
 
         {/* NAV */}
@@ -307,6 +309,10 @@ export default function Sidebar() {
 
           <button className={`sb-btn ${isActive("/attendance") ? "sb-btn-active" : ""}`} onClick={() => navigate("/attendance")}>
             <FaClipboardList className="sb-icon" /> Attendance
+          </button>
+
+          <button className={`sb-btn ${isActive("/timetable") ? "sb-btn-active" : ""}`} onClick={() => navigate("/timetable")}>
+            <FaCalendarCheck className="sb-icon" /> Timetable
           </button>
 
           <button className={`sb-btn ${isActive("/live-sessions") ? "sb-btn-active" : ""}`} onClick={() => navigate("/live-sessions")}>
