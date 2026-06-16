@@ -1,16 +1,42 @@
-# React + Vite
+# ClassEase — Smart Classroom Intelligence System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ClassEase is a professional classroom management and intelligence dashboard built with React, Vite, and Firebase. It is designed to go beyond basic CRUD features by combining student management, attendance intelligence, live session tracking, finance records, timetable planning, and classroom insights in one modern interface.
 
-Currently, two official plugins are available:
+## Key Modules
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Authentication with Firebase
+- Smart dashboard with classroom insights
+- Student add, list, and profile views
+- Class, teacher, subject, and timetable management
+- Attendance management with status tracking and CSV export
+- Live session scheduling and meeting link management
+- Fees collection dashboard with payment status tracking
+- Expense management with budget usage monitoring
+- Profile, settings, dark mode, and password management
 
-## React Compiler
+## Project Focus
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The goal of this system is to help schools and institutes monitor classroom operations, student attendance, academic organization, financial records, and follow-up activities through a clean and professional interface.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- Firebase Authentication
+- Firestore
+- React Router
+- React Icons
+- LocalStorage for demo module persistence
+
+## How to Run
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local URL shown in the terminal.
+
+## Notes
+
+Student records are connected with Firebase in the existing project flow. Attendance, live sessions, fees, and expenses include complete front-end workflows with local persistence, making them ready for later Firestore integration.
