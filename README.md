@@ -1,7 +1,7 @@
 # ClassEase — Smart Classroom Intelligence System
 
 <p align="center">
-  <img src="dashbord.png" width="900" alt="ClassEase Dashboard Preview"/>
+  <img src="dashbord.png" width="900" alt="ClassEase Admin Dashboard Preview"/>
 </p>
 
 ClassEase is a smart classroom management and intelligence system built with React, Vite, and Firebase. It is designed to support real-world classroom operations through role-based access, academic workflow management, attendance tracking, finance monitoring, and intelligent classroom insights.
@@ -73,6 +73,24 @@ Student can:
 * Manage profile and settings
 
 Students cannot edit teacher-managed academic records.
+
+## Admin Dashboard Preview
+
+<p align="center">
+  <img src="dashbord.png" width="900" alt="ClassEase Admin Dashboard"/>
+</p>
+
+## Teacher Dashboard Preview
+
+<p align="center">
+  <img src="teacher_dashborde.png" width="900" alt="ClassEase Teacher Dashboard"/>
+</p>
+
+## Student Dashboard Preview
+
+<p align="center">
+  <img src="student_Dashbord.png" width="900" alt="ClassEase Student Dashboard"/>
+</p>
 
 ## Key Features
 
