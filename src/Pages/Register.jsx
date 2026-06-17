@@ -7,7 +7,7 @@ import bg from "../assets/p4.jpg";
 function Register() {
   const navigate = useNavigate();
   const { register } = useAuth();
-  const [form, setForm] = useState({ name:"", email:"", password:"", confirmPassword:"" });
+  const [form, setForm] = useState({ name:"", email:"", role:"student", password:"", confirmPassword:"" });
   const [error, setError]           = useState("");
   const [loading, setLoading]       = useState(false);
   const [showPassword, setShowPassword]   = useState(false);
@@ -22,7 +22,7 @@ function Register() {
     if (form.password.length < 6) { setError("Password must contain at least 6 characters."); return; }
     try {
       setError(""); setLoading(true);
-      await register(form.name, form.email, form.password);
+      await register(form.name, form.email, form.password, form.role);
       navigate("/dashboard");
     } catch (err) {
       setError(
@@ -50,7 +50,8 @@ function Register() {
         .rfield label { display:block; margin-bottom:5px; font-size:11px; font-weight:600; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.06em; }
         .rinput { display:flex; align-items:center; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.1); padding:9px 13px; border-radius:10px; transition:all 0.2s; gap:8px; }
         .rinput:focus-within { border-color:#f59e0b; background:rgba(245,158,11,0.06); box-shadow:0 0 0 3px rgba(245,158,11,0.12); }
-        .rinput input { flex:1; background:none; border:none; color:white; outline:none; font-size:13.5px; font-family:'DM Sans',sans-serif; }
+        .rinput input, .rinput select { flex:1; background:none; border:none; color:white; outline:none; font-size:13.5px; font-family:'DM Sans',sans-serif; }
+        .rinput select option { color:#0f172a; background:#fff; }
         .rinput input::placeholder { color:rgba(255,255,255,0.22); }
         .eye2 { cursor:pointer; font-size:13px; color:rgba(255,255,255,0.3); }
         .eye2:hover { color:#f59e0b; }
@@ -84,6 +85,17 @@ function Register() {
               <div className="rinput"><span>✉️</span><input type="email" name="email" placeholder="you@school.lk" value={form.email} onChange={handleChange} /></div>
             </div>
             <div className="rfield">
+              <label>Account Role</label>
+              <div className="rinput">
+                <span>🎓</span>
+                <select name="role" value={form.role} onChange={handleChange}>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <div className="rfield">
               <label>Password</label>
               <div className="rinput">
                 <span>🔒</span>
@@ -105,7 +117,7 @@ function Register() {
           </form>
 
           <p className="reg-signin">Already have an account? <span onClick={() => navigate("/")}>Sign In</span></p>
-          <div className="reg-note">📌 Registration creates a teacher account by default. For admin access, set the user role to "admin" in Firestore.</div>
+          <div className="reg-note">📌 Demo registration supports Admin, Teacher, and Student roles. In production, only an administrator should create privileged accounts.</div>
         </div>
       </div>
     </>

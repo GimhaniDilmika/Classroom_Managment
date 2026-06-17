@@ -124,7 +124,7 @@ function Login() {
           </p>
 
           <div className="role-hint">
-            🔐 To create an admin account, register first and set the user role to "admin" in Firestore.
+            🔐 Role-based access is enabled. Admin, teacher, and student users are redirected to their own dashboards after login.
           </div>
         </div>
       </div>
