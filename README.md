@@ -10,7 +10,7 @@ Unlike a basic CRUD application, ClassEase provides separate workflows for admin
 
 ## Live Demo
 
-Live Demo: Add your Vercel deployment link here
+Live Demo: https://classroom-managment-henna.vercel.app/dashboard
 
 ## Project Overview
 
