@@ -1,26 +1,54 @@
-# ClassEase — Smart Classroom Intelligence System
+<p align="center">
+  <img src="src/assets/logo.png" width="130" alt="ClassEase Logo"/>
+</p>
+
+<h1 align="center">ClassEase — Smart Classroom Intelligence System</h1>
+
+<p align="center">
+  A role-based classroom management and intelligence system built with React, Vite, and Firebase.
+</p>
+
+---
+
+## Project Preview
+
+### Admin Dashboard
 
 <p align="center">
   <img src="dashbord.png" width="900" alt="ClassEase Admin Dashboard Preview"/>
 </p>
 
-ClassEase is a smart classroom management and intelligence system built with React, Vite, and Firebase. It is designed to support real-world classroom operations through role-based access, academic workflow management, attendance tracking, finance monitoring, and intelligent classroom insights.
+### Teacher Dashboard
 
-Unlike a basic CRUD application, ClassEase provides separate workflows for administrators, teachers, and students. Admins manage the overall system, teachers manage academic activities, and students access their personal learning information through a clean and responsive interface.
+<p align="center">
+  <img src="teacher_dashborde.png" width="900" alt="ClassEase Teacher Dashboard Preview"/>
+</p>
 
-## Live Demo
+### Student Dashboard
 
-Live Demo: https://classroom-managment-henna.vercel.app/dashboard
+<p align="center">
+  <img src="student_Dashbord.png" width="900" alt="ClassEase Student Dashboard Preview"/>
+</p>
+
+---
 
 ## Project Overview
 
-ClassEase focuses on building a modern digital classroom environment where educational institutions can manage students, teachers, classes, subjects, timetables, attendance, assignments, marks, live sessions, fees, expenses, and academic progress from one platform.
+ClassEase is a professional classroom management and intelligence dashboard built with React, Vite, and Firebase. It goes beyond basic CRUD features by combining student management, attendance intelligence, role-based learning portals, assessment workflows, live session tracking, finance records, timetable planning, and classroom insights in one modern interface.
 
-The system includes role-based dashboards, protected routes, professional navigation, and smart classroom insights to make the application more realistic and industry-ready.
+Unlike a basic CRUD application, ClassEase provides separate workflows for administrators, teachers, and students. Admins manage the overall system, teachers manage academic activities, and students access their personal learning information through a clean and responsive interface.
+
+---
+
+## Live Demo
+
+Live Demo: Add your Vercel deployment link here
+
+---
 
 ## Role-Based Access
 
-ClassEase supports three main user roles:
+ClassEase supports three main real-world user roles.
 
 ### Admin
 
@@ -74,23 +102,7 @@ Student can:
 
 Students cannot edit teacher-managed academic records.
 
-## Admin Dashboard Preview
-
-<p align="center">
-  <img src="dashbord.png" width="900" alt="ClassEase Admin Dashboard"/>
-</p>
-
-## Teacher Dashboard Preview
-
-<p align="center">
-  <img src="teacher_dashborde.png" width="900" alt="ClassEase Teacher Dashboard"/>
-</p>
-
-## Student Dashboard Preview
-
-<p align="center">
-  <img src="student_Dashbord.png" width="900" alt="ClassEase Student Dashboard"/>
-</p>
+---
 
 ## Key Features
 
@@ -113,6 +125,8 @@ Students cannot edit teacher-managed academic records.
 * Mobile responsive interface
 * Smart classroom insights
 
+---
+
 ## Intelligent Classroom Features
 
 ClassEase includes intelligence-focused features that make the system more realistic and professional:
@@ -125,6 +139,8 @@ ClassEase includes intelligence-focused features that make the system more reali
 * Teacher-managed assessment records
 * Student view-only learning portal
 * Role-based academic workflows
+
+---
 
 ## Teacher Workflow
 
@@ -143,6 +159,8 @@ Teachers can create and manage academic activities such as:
 
 This allows teachers to manage classroom learning activities in a structured and realistic way.
 
+---
+
 ## Student Workflow
 
 Students can view their own learning information, including:
@@ -156,6 +174,8 @@ Students can view their own learning information, including:
 * Profile information
 
 The student portal is designed as a read-only academic dashboard, meaning students can view their information but cannot modify teacher-managed data.
+
+---
 
 ## Main Modules
 
@@ -195,6 +215,8 @@ Teachers and admins can manage online class sessions. Students can view live ses
 
 The finance module includes fees collection and expense management. Admins can track paid, partial, and pending fee records as well as institutional expenses.
 
+---
+
 ## Tech Stack
 
 * React
@@ -206,6 +228,8 @@ The finance module includes fees collection and expense management. Admins can t
 * CSS
 * LocalStorage for demo module persistence
 
+---
+
 ## Project Structure
 
 ```bash
@@ -215,15 +239,22 @@ Classroom_Managment/
 ├── src/
 │   ├── Components/
 │   ├── Pages/
+│   ├── assets/
+│   │   └── logo.png
 │   ├── contexts/
 │   ├── firebase.js
 │   ├── App.jsx
 │   └── main.jsx
 │
+├── dashbord.png
+├── teacher_dashborde.png
+├── student_Dashbord.png
 ├── package.json
 ├── vite.config.js
 └── README.md
 ```
+
+---
 
 ## How to Run the Project
 
@@ -253,6 +284,8 @@ npm run dev
 
 Open the local URL shown in the terminal.
 
+---
+
 ## Build the Project
 
 To create a production build:
@@ -260,6 +293,8 @@ To create a production build:
 ```bash
 npm run build
 ```
+
+---
 
 ## Firebase Setup
 
@@ -291,6 +326,8 @@ teacher
 student
 ```
 
+---
+
 ## Demo Role Setup
 
 Create users from the Register page or Firebase Authentication.
@@ -305,9 +342,13 @@ student@gmail.com / 123456   → Student Dashboard
 
 Firebase passwords must be at least 6 characters.
 
+---
+
 ## Notes
 
 Student records are connected with Firebase in the existing project flow. Attendance, live sessions, assignments, marks, fees, and expenses include complete front-end workflows with local persistence, making them ready for later Firestore integration.
+
+---
 
 ## Future Improvements
 
@@ -321,6 +362,8 @@ Student records are connected with Firebase in the existing project flow. Attend
 * Student progress reports
 * Advanced analytics dashboard
 * Student support prediction system
+
+---
 
 ## Project Purpose
 
