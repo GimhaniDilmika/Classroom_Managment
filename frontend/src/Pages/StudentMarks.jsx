@@ -1,0 +1,46 @@
+import React, { useMemo, useState } from "react";
+import Sidebar from "../Components/Sidebar.jsx";
+import { useAuth } from "../contexts/AuthContext";
+import { FaAward, FaChartLine, FaGraduationCap, FaLightbulb, FaSearch } from "react-icons/fa";
+
+const STORAGE_KEY = "classease_marks_v2";
+const DEFAULT_MARKS = [
+  { id: 1, studentId: "STU-001", student: "Aisha Perera", className: "Grade 10A", subject: "Mathematics", assessmentType: "Term Test", term: "Term 1", title: "Mathematics Term Test", marks: 86, maxMarks: 100, remarks: "Excellent algebra skills." },
+  { id: 2, studentId: "STU-001", student: "Aisha Perera", className: "Grade 10A", subject: "Science", assessmentType: "Assignment", term: "Term 1", title: "Science Worksheet", marks: 42, maxMarks: 50, remarks: "Good work." },
+  { id: 3, studentId: "STU-001", student: "Aisha Perera", className: "Grade 10A", subject: "English", assessmentType: "Quiz", term: "Term 1", title: "Grammar Quiz", marks: 36, maxMarks: 50, remarks: "Practice writing answers in full sentences." },
+  { id: 4, studentId: "STU-002", student: "Kavindu Silva", className: "Grade 10A", subject: "Mathematics", assessmentType: "Assignment", term: "Term 1", title: "Algebra Practice Paper", marks: 32, maxMarks: 50, remarks: "Needs more practice in factorization." },
+];
+function readMarks(){ try{ const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)); return saved?.length?saved:DEFAULT_MARKS; } catch { return DEFAULT_MARKS; } }
+function pct(item){ return item.maxMarks ? Math.round((Number(item.marks)/Number(item.maxMarks))*100) : 0; }
+function grade(p){ if(p>=85) return "A"; if(p>=75) return "B"; if(p>=65) return "C"; if(p>=50) return "S"; return "Needs Support"; }
+function Stat({label,value,note}){return <div className="sm-stat"><p>{label}</p><h3>{value}</h3><span>{note}</span></div>}
+
+export default function StudentMarks(){
+  const { userProfile } = useAuth();
+  const [marks] = useState(readMarks);
+  const [term,setTerm]=useState("All");
+  const [search,setSearch]=useState("");
+  const studentId = userProfile?.studentId || "STU-001";
+  const studentClass = `${userProfile?.className || "Grade 10"}${userProfile?.section || "A"}`;
+  const visible = useMemo(()=>marks.filter((item)=>{
+    const q=search.toLowerCase();
+    const belongs = item.studentId === studentId || item.className === studentClass || (!userProfile?.studentId && item.studentId === "STU-001");
+    const matchTerm = term === "All" || item.term === term;
+    const matchSearch = `${item.subject} ${item.title} ${item.assessmentType}`.toLowerCase().includes(q);
+    return belongs && matchTerm && matchSearch;
+  }),[marks,studentId,studentClass,term,search,userProfile?.studentId]);
+  const avg = visible.length ? Math.round(visible.reduce((sum,item)=>sum+pct(item),0)/visible.length) : 0;
+  const best = visible.length ? visible.reduce((a,b)=>pct(a)>pct(b)?a:b) : null;
+  const support = visible.filter((item)=>pct(item)<50).length;
+  const bySubject = useMemo(()=>{
+    const map={}; visible.forEach((item)=>{ if(!map[item.subject]) map[item.subject]=[]; map[item.subject].push(pct(item)); });
+    return Object.entries(map).map(([subject, values])=>({subject, avg: Math.round(values.reduce((a,b)=>a+b,0)/values.length)}));
+  },[visible]);
+  return <>
+    <style>{`
+      .sm-page{min-height:100vh;margin-left:16rem;background:#f1f5f9;font-family:'DM Sans',sans-serif}.sm-topbar{height:4rem;background:rgba(255,255,255,.96);border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:80}.sm-brand{font-family:'Syne',sans-serif;font-weight:800;background:linear-gradient(90deg,#302b63,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.sm-role{background:#eff6ff;color:#1d4ed8;padding:.35rem .8rem;border-radius:999px;font-weight:900;font-size:.75rem}.sm-content{padding:1.75rem 2rem}.sm-hero{background:linear-gradient(135deg,#1e3a8a,#312e81,#0f172a);border-radius:1.35rem;color:#fff;padding:1.8rem;margin-bottom:1rem}.sm-hero h1{font-family:'Syne',sans-serif;margin:.25rem 0}.sm-hero p{color:rgba(255,255,255,.68);max-width:850px}.sm-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-bottom:1rem}.sm-stat{background:#fff;border:1px solid #e8ecf0;border-radius:1rem;padding:1rem;box-shadow:0 4px 18px rgba(15,23,42,.06)}.sm-stat p{margin:0;color:#64748b;font-size:.72rem;text-transform:uppercase;font-weight:900}.sm-stat h3{margin:.2rem 0;color:#0f172a;font-size:1.45rem}.sm-stat span{font-size:.76rem;color:#94a3b8}.sm-toolbar{display:flex;gap:.75rem;background:#fff;border:1px solid #e8ecf0;border-radius:1rem;padding:1rem;margin-bottom:1rem}.sm-search{display:flex;align-items:center;gap:.55rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:.65rem 1rem;flex:1}.sm-search input,.sm-toolbar select{border:0;outline:0;background:transparent;font-family:inherit}.sm-toolbar select{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:.65rem}.sm-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:1rem}.sm-panel,.sm-table-card{background:#fff;border:1px solid #e8ecf0;border-radius:1rem;padding:1.1rem;box-shadow:0 4px 18px rgba(15,23,42,.06)}.sm-panel h2{font-size:1rem;margin:0 0 1rem;color:#0f172a}.sm-subject{margin-bottom:.9rem}.sm-sub-head{display:flex;justify-content:space-between;color:#334155;font-weight:900;font-size:.85rem}.sm-track{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-top:.35rem}.sm-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6)}.sm-intel{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:1rem;padding:1rem;margin-top:1rem;display:flex;gap:.7rem;align-items:flex-start}.sm-table-wrap{overflow-x:auto}.sm-table{width:100%;border-collapse:collapse;min-width:780px}.sm-table th{background:#f8fafc;color:#64748b;font-size:.72rem;text-transform:uppercase;text-align:left;padding:.85rem}.sm-table td{padding:.85rem;border-top:1px solid #f1f5f9;color:#334155;font-size:.86rem}.sm-title{font-weight:900;color:#0f172a}.sm-pill{border-radius:999px;padding:.25rem .62rem;font-weight:900;font-size:.72rem;display:inline-flex;align-items:center;gap:.3rem}.sm-good{background:#ecfdf5;color:#047857}.sm-mid{background:#fffbeb;color:#b45309}.sm-low{background:#fee2e2;color:#b91c1c}@media(max-width:900px){.sm-page{margin-left:0}.sm-topbar{padding-left:4.5rem;padding-right:1rem}.sm-content{padding:1rem}.sm-stats,.sm-layout{grid-template-columns:1fr}.sm-toolbar{flex-direction:column}.sm-hero{padding:1.3rem}}
+    `}</style>
+    <Sidebar />
+    <main className="sm-page"><header className="sm-topbar"><span className="sm-brand">My Marks & Progress</span><span className="sm-role">Student Portal</span></header><section className="sm-content"><div className="sm-hero"><p>{studentClass} Academic Performance</p><h1>View term tests, assignments, and subject progress</h1><p>This page shows marks entered by teachers and gives a clear learning overview with performance insights.</p></div><div className="sm-stats"><Stat label="Average" value={`${avg}%`} note="Current filtered average"/><Stat label="Records" value={visible.length} note="Marks available"/><Stat label="Best Subject" value={best?.subject || "—"} note={best ? `${pct(best)}% highest` : "No marks yet"}/><Stat label="Support Alerts" value={support} note="Below 50%"/></div><div className="sm-toolbar"><div className="sm-search"><FaSearch style={{color:"#94a3b8"}}/><input value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Search subject or assessment"/></div><select value={term} onChange={(e)=>setTerm(e.target.value)}><option>All</option><option>Term 1</option><option>Term 2</option><option>Term 3</option></select></div><div className="sm-layout"><div className="sm-panel"><h2><FaChartLine /> Subject Progress</h2>{bySubject.length===0?<p style={{color:"#64748b"}}>No marks are available yet.</p>:bySubject.map((item)=><div className="sm-subject" key={item.subject}><div className="sm-sub-head"><span>{item.subject}</span><span>{item.avg}%</span></div><div className="sm-track"><div className="sm-bar" style={{width:`${item.avg}%`}}/></div></div>)}<div className="sm-intel"><FaLightbulb/><div>{avg>=75?"Great progress. Keep your current learning routine and complete upcoming assignments early.":avg>=50?"You are on track. Focus on the subjects with lower progress bars for better results.":"Support suggestion: ask your teacher for revision help and review assignments before the next term test."}</div></div></div><div className="sm-table-card"><div className="sm-table-wrap"><table className="sm-table"><thead><tr><th>Assessment</th><th>Subject</th><th>Term</th><th>Marks</th><th>Grade</th><th>Teacher Remark</th></tr></thead><tbody>{visible.map((item)=>{ const p=pct(item); return <tr key={item.id}><td><div className="sm-title">{item.title}</div><div>{item.assessmentType}</div></td><td>{item.subject}</td><td>{item.term}</td><td><strong>{item.marks}/{item.maxMarks}</strong><br/>{p}%</td><td><span className={`sm-pill ${p>=75?"sm-good":p>=50?"sm-mid":"sm-low"}`}><FaGraduationCap/> {grade(p)}</span></td><td>{item.remarks || "—"}</td></tr>})}</tbody></table></div></div></div></section></main>
+  </>
+}

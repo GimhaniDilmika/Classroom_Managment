@@ -1,0 +1,146 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: system-ui, sans-serif;
+}
+
+.register-card {
+  width: 380px;
+  background: #1a1a20;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+  color: white;
+}
+
+/* HEADER */
+.register-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.register-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.register-header p {
+  color: #b8b8d0;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ERROR BOX */
+.register-error {
+  background: rgba(255,60,60,0.2);
+  border: 1px solid #ff3c3c;
+  padding: 10px;
+  border-radius: 10px;
+  color: #ffcccc;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* INPUT FIELDS */
+.field-group {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* normal text inputs (name, email) */
+.field-group input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #333344;
+  background: #0e0e14;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+/* PASSWORD WRAPPER (for password + confirm password) */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  background: #0e0e14;
+  border: 1px solid #333344;
+  border-radius: 10px;
+  padding: 0 10px;
+  transition: 0.2s;
+}
+
+.password-wrapper:hover {
+  border-color: #4d7cff;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+/* EYE ICON */
+.eye-icon {
+  width: 22px;
+  height: 22px;
+  color: #b3b3c9;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.eye-icon:hover {
+  color: #ffffff;
+}
+
+/* BUTTON */
+.register-btn {
+  width: 100%;
+  background: #2563eb;
+  border: none;
+  padding: 14px 0;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background: #1d4ed8;
+}
+
+/* LOGIN LINK */
+.login-link {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.login-link span {
+  color: #4d7cff;
+  cursor: pointer;
+}

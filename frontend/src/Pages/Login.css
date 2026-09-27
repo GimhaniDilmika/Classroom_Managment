@@ -1,0 +1,162 @@
+/* PAGE BACKGROUND */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ADD BACKGROUND IMAGE */
+  background-image: url("../assets/p2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* CARD BOX */
+.login-card {
+  width: 380px;
+  background: #1a1a20;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+  color: white;
+}
+
+/* HEADER */
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.login-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.login-header p {
+  color: #b8b8d0;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ERROR MESSAGE */
+.login-error {
+  background: rgba(255, 60, 60, 0.2);
+  border: 1px solid #ff3c3c;
+  color: #ffbdbd;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+/* INPUT FIELDS */
+.field-group {
+  margin-bottom: 14px;
+}
+
+.field-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #0e0e14;
+  border: 1px solid #333344;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.input-wrapper input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-icon {
+  font-size: 15px;
+  color: #b3b3c9;
+  margin-right: 8px;
+}
+
+.eye {
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* OPTIONS */
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4d7cff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  width: 100%;
+  background: #2563eb;
+  border: none;
+  padding: 12px 0;
+  border-radius: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* TEXT BELOW */
+.terms {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #a6a6bf;
+  text-align: center;
+}
+
+.terms span {
+  color: #e0e0ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signup {
+  margin-top: 18px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.signup span {
+  color: #4d7cff;
+  cursor: pointer;
+}

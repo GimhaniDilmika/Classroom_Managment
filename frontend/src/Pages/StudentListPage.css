@@ -1,0 +1,907 @@
+/* =========================
+   PAGE
+========================= */
+
+.sl-page {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #f5f7fb;
+
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.sl-topbar {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 295px;
+
+  right: 0;
+
+  height: 70px;
+
+  background: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 35px;
+
+  z-index: 20;
+
+  box-shadow:
+    0 3px 15px rgba(0, 0, 0, 0.07);
+
+}
+
+
+.sl-top-title {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 25px;
+
+  font-weight: 800;
+
+  color: #172554;
+
+}
+
+
+.sl-top-title svg {
+
+  color: #312e81;
+
+  font-size: 27px;
+
+}
+
+
+.sl-add-btn {
+
+  border: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #ef4444
+    );
+
+  color: white;
+
+  padding: 12px 22px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+}
+
+
+.sl-add-btn:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(239, 68, 68, 0.25);
+
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.sl-content {
+
+  flex: 1;
+
+  margin-left: 295px;
+
+  padding: 30px;
+
+  padding-top: 105px;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.sl-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+
+}
+
+
+.sl-header h1 {
+
+  margin: 0;
+
+  font-size: 38px;
+
+  font-weight: 800;
+
+  background:
+    linear-gradient(
+      90deg,
+      #312e81,
+      #ef4444
+    );
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+}
+
+
+.sl-header p {
+
+  margin-top: 7px;
+
+  color: #64748b;
+
+  font-size: 16px;
+
+}
+
+
+.sl-total {
+
+  min-width: 100px;
+
+  padding: 12px 20px;
+
+  border-radius: 15px;
+
+  background: #f59e0b;
+
+  color: white;
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  text-align: center;
+
+}
+
+
+.sl-total span {
+
+  display: block;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  opacity: 0.9;
+
+}
+
+
+/* =========================
+   FILTER BAR
+========================= */
+
+.sl-filter-bar {
+
+  display: flex;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+
+}
+
+
+.sl-search {
+
+  flex: 1;
+
+  height: 48px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 20px;
+
+}
+
+
+.sl-search svg {
+
+  color: #64748b;
+
+}
+
+
+.sl-search input {
+
+  border: none;
+
+  outline: none;
+
+  width: 100%;
+
+  font-size: 15px;
+
+}
+
+
+.sl-filter-bar select {
+
+  width: 150px;
+
+  height: 48px;
+
+  padding: 0 15px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #334155;
+
+  cursor: pointer;
+
+  outline: none;
+
+}
+
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+
+.sl-table-container {
+
+  background: white;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08);
+
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.sl-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+}
+
+
+.sl-table thead {
+
+  background:
+    linear-gradient(
+      90deg,
+      #312e81,
+      #4338ca
+    );
+
+  color: white;
+
+}
+
+
+.sl-table th {
+
+  padding: 16px 15px;
+
+  text-align: left;
+
+  font-size: 13px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+
+}
+
+
+.sl-table td {
+
+  padding: 16px 15px;
+
+  border-bottom: 1px solid #eef2f7;
+
+  color: #334155;
+
+  vertical-align: middle;
+
+}
+
+
+.sl-table tbody tr {
+
+  transition: 0.2s;
+
+}
+
+
+.sl-table tbody tr:hover {
+
+  background: #f8fafc;
+
+}
+
+
+.sl-table tbody tr:last-child td {
+
+  border-bottom: none;
+
+}
+
+
+/* =========================
+   NUMBER
+========================= */
+
+.sl-number {
+
+  width: 30px;
+
+  height: 30px;
+
+  border-radius: 9px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #eef2ff;
+
+  color: #4338ca;
+
+  font-weight: 700;
+
+}
+
+
+/* =========================
+   STUDENT
+========================= */
+
+.sl-student {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+
+.sl-avatar {
+
+  width: 45px;
+
+  height: 45px;
+
+  border-radius: 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #ef4444
+    );
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+}
+
+
+.sl-student strong {
+
+  display: block;
+
+  color: #172554;
+
+  font-size: 14px;
+
+}
+
+
+.sl-student span {
+
+  display: block;
+
+  margin-top: 3px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+
+}
+
+
+/* =========================
+   STUDENT ID
+========================= */
+
+.sl-id {
+
+  padding: 6px 10px;
+
+  background: #f1f5f9;
+
+  border-radius: 8px;
+
+  color: #475569;
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+}
+
+
+/* =========================
+   GENDER
+========================= */
+
+.sl-gender {
+
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+}
+
+
+.sl-gender.male {
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+}
+
+
+.sl-gender.female {
+
+  background: #fce7f3;
+
+  color: #db2777;
+
+}
+
+
+/* =========================
+   CLASS
+========================= */
+
+.sl-class {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #475569;
+
+}
+
+
+.sl-class svg {
+
+  color: #6366f1;
+
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+.sl-phone {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #475569;
+
+  white-space: nowrap;
+
+}
+
+
+.sl-phone svg {
+
+  color: #64748b;
+
+}
+
+
+/* =========================
+   PARENT
+========================= */
+
+.sl-parent strong {
+
+  display: block;
+
+  font-size: 13px;
+
+  color: #334155;
+
+}
+
+
+.sl-parent span {
+
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #94a3b8;
+
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.sl-actions {
+
+  display: flex;
+
+  gap: 7px;
+
+}
+
+
+.sl-actions button {
+
+  width: 35px;
+
+  height: 35px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+}
+
+
+.sl-actions button:hover {
+
+  transform: translateY(-2px);
+
+}
+
+
+.sl-view {
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+}
+
+
+.sl-edit {
+
+  background: #fef3c7;
+
+  color: #d97706;
+
+}
+
+
+.sl-delete {
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.sl-loading {
+
+  background: white;
+
+  min-height: 250px;
+
+  border-radius: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #64748b;
+
+}
+
+
+.sl-spinner {
+
+  width: 35px;
+
+  height: 35px;
+
+  border: 4px solid #e2e8f0;
+
+  border-top-color: #4338ca;
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+  to {
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.sl-empty {
+
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #64748b;
+
+}
+
+
+.sl-empty svg {
+
+  font-size: 45px;
+
+  color: #cbd5e1;
+
+}
+
+
+.sl-empty h3 {
+
+  margin-bottom: 5px;
+
+  color: #334155;
+
+}
+
+
+.sl-empty p {
+
+  margin: 0;
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.sl-error {
+
+  background: #fee2e2;
+
+  color: #991b1b;
+
+  padding: 15px 18px;
+
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+
+.sl-error button {
+
+  border: none;
+
+  background: #991b1b;
+
+  color: white;
+
+  padding: 7px 14px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+
+  .sl-table-container {
+
+    overflow-x: auto;
+
+  }
+
+  .sl-table {
+
+    min-width: 1050px;
+
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .sl-topbar {
+
+    left: 0;
+
+  }
+
+
+  .sl-content {
+
+    margin-left: 0;
+
+    padding: 20px;
+
+    padding-top: 95px;
+
+  }
+
+
+  .sl-header {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+  }
+
+
+  .sl-filter-bar {
+
+    flex-direction: column;
+
+  }
+
+
+  .sl-filter-bar select {
+
+    width: 100%;
+
+  }
+
+
+  .sl-search {
+
+    width: 100%;
+
+  }
+
+}

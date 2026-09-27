@@ -1,0 +1,462 @@
+/* ===============================
+   ADD STUDENT PAGE
+================================ */
+
+.add-student-page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding: 30px;
+
+    background: #f5f7fb;
+
+    box-sizing: border-box;
+
+}
+
+
+
+/* ===============================
+   PAGE HEADER
+================================ */
+
+.page-header {
+
+    margin-bottom: 25px;
+
+}
+
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #172554;
+
+}
+
+
+.page-header p {
+
+    margin-top: 6px;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+}
+
+
+
+
+/* ===============================
+   CARD
+================================ */
+
+
+.student-card {
+
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+    0 10px 30px rgba(15,23,42,0.08);
+
+}
+
+
+
+
+/* ===============================
+   TITLES
+================================ */
+
+
+.student-card h2 {
+
+    margin-bottom: 25px;
+
+    font-size: 22px;
+
+    color:#0f172a;
+
+}
+
+
+.parent-title {
+
+    margin-top:40px;
+
+}
+
+
+
+
+/* ===============================
+   FORM GRID
+================================ */
+
+
+.form-grid {
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(2,minmax(0,1fr));
+
+
+    gap:25px 35px;
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+/* ===============================
+   FORM GROUP
+================================ */
+
+
+.form-group {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+
+}
+
+
+
+
+.form-group label {
+
+
+    margin-bottom:8px;
+
+
+    font-size:14px;
+
+
+    font-weight:500;
+
+
+    color:#475569;
+
+
+}
+
+
+
+
+/* ===============================
+   INPUTS
+================================ */
+
+
+.form-group input,
+.form-group select {
+
+
+    width:100%;
+
+
+    height:45px;
+
+
+    padding:0 14px;
+
+
+    box-sizing:border-box;
+
+
+    border-radius:8px;
+
+
+    border:1px solid #dbe3ef;
+
+
+    background:white;
+
+
+    font-size:14px;
+
+
+    outline:none;
+
+
+    transition:.2s;
+
+
+}
+
+
+
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+
+    border-color:#f59e0b;
+
+
+    box-shadow:
+
+    0 0 0 3px rgba(245,158,11,0.15);
+
+
+}
+
+
+
+
+
+
+/* ===============================
+   BUTTONS
+================================ */
+
+
+.button-area {
+
+
+    margin-top:35px;
+
+
+    display:flex;
+
+
+    gap:15px;
+
+
+}
+
+
+
+.create-btn {
+
+
+    background:
+
+    linear-gradient(
+    90deg,
+    #ffb000,
+    #ff4b4b
+    );
+
+
+    color:white;
+
+
+    border:none;
+
+
+    padding:
+
+    12px 35px;
+
+
+    border-radius:8px;
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+.create-btn:hover {
+
+
+    opacity:.9;
+
+
+}
+
+
+
+
+.back-btn {
+
+
+    background:#e2e8f0;
+
+
+    color:#334155;
+
+
+    border:none;
+
+
+    padding:
+
+    12px 35px;
+
+
+    border-radius:8px;
+
+
+    font-size:15px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+.back-btn:hover {
+
+
+    background:#cbd5e1;
+
+
+}
+
+
+
+
+/* ===============================
+   FIX SIDEBAR OVERFLOW
+================================ */
+
+
+.page-main {
+
+
+    flex:1;
+
+    min-width:0;
+
+    overflow-x:hidden;
+
+
+}
+
+
+
+
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+
+@media(max-width:1000px){
+
+
+    .add-student-page {
+
+
+        padding:20px;
+
+
+    }
+
+
+
+    .student-card {
+
+
+        padding:25px;
+
+
+    }
+
+
+
+
+    .form-grid {
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+    .page-header h1 {
+
+
+        font-size:24px;
+
+
+    }
+
+
+
+    .student-card {
+
+
+        padding:18px;
+
+
+    }
+
+
+
+    .button-area {
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+    .create-btn,
+    .back-btn {
+
+
+        width:100%;
+
+
+    }
+
+
+}
