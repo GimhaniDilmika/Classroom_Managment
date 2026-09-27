@@ -1,77 +1,147 @@
 # ClassEase Professional FullStack
 
-Frontend:
-cd frontend
-npm install
-npm run dev
+ClassEase Professional is a full-stack classroom management system designed to manage students, teachers, subjects, users, and academic activities through role-based access.
 
-Backend:
-cd backend
-npm install
-copy .env.example to .env
-npm run dev
+The system provides separate functionality for Admin, Teacher, and Student users.
 
-Backend: Express + MongoDB
-Frontend: React + Vite
+---
 
-Database: MongoDB
-Authentication: Express + bcryptjs
+## Features
 
-Features:
+### Admin
+
 - Admin Dashboard
 - Student Management
+- Add Student
+- View Student Profiles
+- Edit Student Information
+- Delete Students
 - Teacher Management
+- Add Teachers
+- Edit Teacher Information
+- Delete Teachers
 - Subject Management
-- Student Profiles
-- Add, Edit and Delete Students
-- Add, Edit and Delete Teachers
-- Add, Edit and Delete Subjects
-- Role-based Access
-- Student Portal
-- Teacher Portal
-- Admin Portal
-- User Authentication
+- Add Subjects
+- Edit Subjects
+- Delete Subjects
+- User Management
+- Role-based Access Control
 
-Project Structure:
+### Teacher
 
+- Teacher Dashboard
+- View Classes
+- View Students
+- Support Notes
+- Assignments
+- Marks Management
+- Attendance Management
+- Timetable
+- Live Sessions
+
+### Student
+
+- Student Dashboard
+- View Attendance
+- View Fees
+- View Timetable
+- View Assignments
+- View Marks
+- View Live Sessions
+- Student Profile
+
+---
+
+## Screenshots
+
+### Admin Dashboard
+
+![Admin Dashboard](dashbord.png)
+
+### Student Dashboard
+
+![Student Dashboard](student_Dashbord.png)
+
+### Teacher Dashboard
+
+![Teacher Dashboard](teacher_dashborde.png)
+
+---
+
+## Technologies
+
+### Frontend
+
+- React
+- Vite
+- React Router
+- Axios
+- React Icons
+- CSS
+
+### Backend
+
+- Node.js
+- Express.js
+- Mongoose
+- MongoDB
+- bcryptjs
+- CORS
+- dotenv
+
+### Database
+
+- MongoDB
+
+---
+
+## Authentication
+
+ClassEase uses a custom Express backend for user authentication.
+
+Passwords are securely hashed using `bcryptjs`.
+
+The system supports different user roles:
+
+- Admin
+- Teacher
+- Student
+
+Role-based access is implemented to control access to different pages and modules.
+
+---
+
+## Project Structure
+
+```text
 ClassEase_Professional_FullStack/
 │
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
 ├── backend/
+│   │
 │   ├── src/
+│   │   ├── config/
 │   │   ├── controllers/
 │   │   ├── models/
-│   │   ├── routes/
-│   │   └── config/
+│   │   └── routes/
+│   │
 │   ├── package.json
 │   └── .env.example
 │
+├── frontend/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── Components/
+│   │   ├── contexts/
+│   │   └── Pages/
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── dashbord.png
+├── student_Dashbord.png
+├── teacher_dashborde.png
+├── .gitignore
 └── README.md
-
-API:
-
-Authentication:
- /api/auth
-
-Admin:
- /api/admin
-
-Main Modules:
-- Students
-- Teachers
-- Subjects
-- Users
-- Dashboard
-
-Backend runs on:
-http://localhost:5000
-
-Frontend runs using Vite.
-
-Note:
-Create a .env file inside the backend folder using .env.example.
-Do not upload the .env file to GitHub.
